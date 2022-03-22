@@ -125,19 +125,12 @@ nav ul li {
     body {
       background-color: blue;
     }
-    .bottom {
-        background-color: green;
-        color: white;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-    }
-
     
     .bottom .songInfo {
         left: revert;
         justify-content: center;
         align-items: center;
+        margin-bottom: 15px;
     }
 
     .icons {
