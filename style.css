@@ -110,7 +110,7 @@ nav ul li {
     cursor: pointer;
 }
 
-.songInfo {
+.bottom .songInfo {
     position: absolute;
     left: 10vw;
     font-family: 'Varela Round', sans-serif;
@@ -123,19 +123,35 @@ nav ul li {
 
 @media only screen and (max-width: 1100px) {
     body {
-        background-color: blue;
+      background-color: blue;
     }
-    .songInfo {
-        position: absolute;
-        left: 27vw;
-        font-family: 'Varela Round', sans-serif;
-        margin-bottom: 15px;
+    .bottom {
+        background-color: green;
+        color: white;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    
+    .bottom .songInfo {
+        left: revert;
+        justify-content: center;
+        align-items: center;
     }
 
     .icons {
         margin-top: 45px;
     }
-   
+
+    #previous {
+        margin-right: 11px;
+    }
+
+    #next {
+        margin-left: 11px;
+    }
+  }
+
   
-}
- 
+      
