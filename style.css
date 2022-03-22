@@ -125,5 +125,15 @@ nav ul li {
     body {
         background-color: blue;
     }
+
+    .songInfo {
+        position: absolute;
+        left: 27vw;
+        margin-bottom: 20px;
+    }
+     
+    .icons {
+        margin-top: 45px;
+    }
 }
  
