@@ -103,11 +103,12 @@ nav ul li {
 }
 
 .timestamp {
-    margin: 0 21px;
+    margin-right: 10px;
 }
 
-.timestamp i{
+.songlistplay i{
     cursor: pointer;
+    margin-right: 20px;
 }
 
 .bottom .songInfo {

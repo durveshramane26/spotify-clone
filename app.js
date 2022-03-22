@@ -6,8 +6,11 @@ let audioElement = new Audio('songs/1.mp3');
 let masterPlay = document.getElementById('masterPlay');
 let myProgressBar = document.getElementById('myProgressBar');
 let gif = document.getElementById('gif')
-masterSongName = document.getElementById('masterSongName');
+let masterSongName = document.getElementById('masterSongName');
+let Timeduration = document.getElementById('Timeduration');
 let songItems = Array.from(document.getElementsByClassName('songItem'));
+let zero = document.getElementById('0');
+let timeStamps = document.getElementsByClassName("timestamp")
 
 let songs = [
     {songName: "Trampoline", filePath: "songs/1.mp3", coverPath: "covers/1.jpg"},
@@ -23,10 +26,17 @@ let songs = [
     
 ]
 
+let audioElements = songs.map((song)=> {
+    return new Audio(song.filePath) 
+})
+
 songItems.forEach((element, i)=>{
     element.getElementsByTagName("img")[0].src = songs[i].coverPath;
-    element.getElementsByClassName("songName")[0].innerText = songs[i].songName
+    element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
 })
+
+
+
 
 // audioElement.play()
 
@@ -38,6 +48,7 @@ masterPlay.addEventListener('click', ()=> {
         masterPlay.classList.add('fa-circle-pause');
         gif.style.opacity = 1;
     }
+    
     else{  
         audioElement.pause();
         masterPlay.classList.remove('fa-circle-pause');
@@ -47,13 +58,47 @@ masterPlay.addEventListener('click', ()=> {
 
 
 })
+audioElements.forEach((audioElement, index)=>{
+    audioElement.onloadedmetadata = function() {
+    //  console.log(audioElement.duration);
+        let min_duration = Math.floor(audioElement.duration / 60);
+        let sec_duration = Math.floor(audioElement.duration % 60);
+        if (sec_duration < 10) {
+            sec_duration = `0${sec_duration}`;
+        }
+        let tot_duration = `${min_duration}:${sec_duration}`;
+        let timestamp = document.getElementById(index)
+    //  console.log(tot_duration);
+        timestamp.innerHTML = `${tot_duration}`;
+}
 
-//Listen to Events
-audioElement.addEventListener('timeupdate', ()=> {
+})
+
+
+
+
+
+
+
+ //Listen to Events
+ audioElement.addEventListener('timeupdate', ()=> {
+
+
     //update Seekbar
+   // console.log(audioElement.duration)
     progress = parseInt((audioElement.currentTime/audioElement.duration)* 100);
     myProgressBar.value = progress;
-})
+
+    
+ /*
+    let min_duration = Math.floor(audioElement.duration / 60);
+    let sec_duration = Math.floor(audioElement.duration % 60);
+
+    let tot_duration = `${min_duration}:${sec_duration}`;
+
+    Timeduration.innerText = `${tot_duration}`;
+*/
+ })
 
 myProgressBar.addEventListener('change', ()=> {
     audioElement.currentTime = myProgressBar.value * audioElement.duration/100;
@@ -65,6 +110,9 @@ const makeAllPlays = ()=>{
         element.classList.add('fa-circle-play');
     })
 }
+
+
+
 
 Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
     element.addEventListener('click', (e)=>{
@@ -83,6 +131,7 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
 
     })
 })
+
 
 document.getElementById('next').addEventListener('click', ()=>{
     if(songIndex>=9){
