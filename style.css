@@ -125,15 +125,17 @@ nav ul li {
     body {
         background-color: blue;
     }
-
     .songInfo {
         position: absolute;
         left: 27vw;
-        margin-bottom: 20px;
+        font-family: 'Varela Round', sans-serif;
+        margin-bottom: 15px;
     }
-     
+
     .icons {
         margin-top: 45px;
     }
+   
+  
 }
  
